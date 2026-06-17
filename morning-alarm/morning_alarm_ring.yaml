@@ -1,0 +1,23 @@
+alias: "Morning Alarm — Ring every minute"
+description: >
+  Send a critical notification every minute until the veranda door is opened.
+  Critical notifications bypass silent mode on iOS.
+trigger:
+  - platform: time_pattern
+    minutes: "/1"
+condition:
+  - condition: state
+    entity_id: input_boolean.morning_alarm_italo
+    state: "on"
+action:
+  - service: notify.mobile_app_iphone_di_italo
+    data:
+      title: "SVEGLIA"
+      message: "Apri la porta della veranda per fermare la sveglia."
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1.0
+mode: single

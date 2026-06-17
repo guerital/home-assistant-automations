@@ -1,0 +1,18 @@
+# Helpers per Morning Alarm
+# Crea via UI: Impostazioni → Dispositivi e servizi → Helper → + Crea helper
+# Oppure incolla in configuration.yaml
+
+input_datetime:
+  morning_alarm_time:
+    name: "Morning Alarm Time"
+    has_date: false
+    has_time: true
+    # Orario default: 08:00
+    # Modificabile ogni sera dall'app HA senza toccare il codice
+
+input_boolean:
+  morning_alarm_italo:
+    name: "Morning Alarm Italo"
+    icon: mdi:alarm
+    # ON  = sveglia attiva, iPhone suona ogni minuto
+    # OFF = sveglia spenta

@@ -1,0 +1,21 @@
+alias: "Morning Alarm — Stop on veranda door open"
+description: >
+  When the veranda door is opened and the alarm is active,
+  turn off the boolean flag and send a confirmation notification.
+trigger:
+  - platform: state
+    entity_id: binary_sensor.veranda_door_sensor_porta
+    to: "on"
+condition:
+  - condition: state
+    entity_id: input_boolean.morning_alarm_italo
+    state: "on"
+action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.morning_alarm_italo
+  - service: notify.mobile_app_iphone_di_italo
+    data:
+      title: "Sveglia disattivata"
+      message: "Sei fuori dal letto. Giorno iniziato."
+mode: single

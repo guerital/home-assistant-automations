@@ -1,0 +1,20 @@
+alias: "Morning Alarm — Start"
+description: >
+  At the configured alarm time, if Italo is home, activate the alarm
+  by turning on the Morning Alarm boolean and sending a notification.
+trigger:
+  - platform: time
+    at: input_datetime.morning_alarm_time
+condition:
+  - condition: state
+    entity_id: person.italo_guerrieri
+    state: home
+action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.morning_alarm_italo
+  - service: notify.mobile_app_iphone_di_italo
+    data:
+      title: "Morning Alarm"
+      message: "Sveglia! Apri la porta della veranda per fermarla."
+mode: single
